@@ -2,6 +2,8 @@ package com.arichafamily.java;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class JButtonListenerExample
@@ -24,9 +26,10 @@ public class JButtonListenerExample
     {
         frame = new JFrame("Trivia");
         frame.setResizable(false);
+        ArrayList<Trivia> questions = QuestionsService.getQuestions();
 
         // create our Buttons and TextArea
-        JButton showDialogButton = new JButton("Play Trivia");
+        JButton showDialogButton = new JButton("Get Trivia card");
         JButton showDialogButton1 = new JButton("1");
         JButton showDialogButton2 = new JButton("2");
         JButton showDialogButton3 = new JButton("3");
@@ -60,8 +63,13 @@ public class JButtonListenerExample
         showDialogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                textArea1.setText("");
+                textArea1.append(questions.get(0).question.toString());
+                questions.remove(0);
+/*
                 Deck d = new Deck();
                 d.shuffle();
+*/
             }
         });
 
